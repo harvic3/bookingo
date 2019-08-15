@@ -133,10 +133,13 @@ namespace BookingoApi.Data.Repositories
 
         public BookingModel GetHotelDetailBooking(long bookingId)
         {
-            var result = BookingoContext.DataBase().Bookings.Where(x => x.Id == bookingId);
-            var booking = SimpleMapper.Map<BookingModel>(result);            
-            booking.Guests = SimpleMapper.MapCollection<GuestModel>(result.Where(x => x.Id == booking.Id).FirstOrDefault().Guests.ToList());
-            booking.Hotel = SimpleMapper.Map<HotelModel>(result.Where(x => x.Id == booking.Id).Select(x => x.Hotel).FirstOrDefault());
+            var result = BookingoContext.DataBase().Bookings.Where(x => x.Id == bookingId).FirstOrDefault();
+            var booking = SimpleMapper.Map<BookingModel>(result);
+            if (booking != null)
+            {
+                booking.Guests = SimpleMapper.MapCollection<GuestModel>(result.Guests);
+                booking.Hotel = SimpleMapper.Map<HotelModel>(result.Hotel);
+            }
             return booking;
         }
 

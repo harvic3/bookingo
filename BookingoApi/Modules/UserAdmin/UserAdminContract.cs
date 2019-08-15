@@ -188,23 +188,48 @@ namespace BookingoApi.Modules.UserAdmin
             }
         }
 
-        public Result UpdateUser(UserModel user)
+        public Result UpdateUser(UserModel curentUser)
         {
             Result result = new Result();
-            if (!IsValidUser(user, result, true))
+            if (!IsValidUser(curentUser, result, true))
             {
                 result.Message = result.GetMessages(" - ");
                 result.FlowControl = FlowOptions.Failed;
-                result.Data = user;
+                result.Data = curentUser;
                 return result;
             }
-            UserModel userUpdated = AuthProvider.UpdateUserAuth(user);
-            if (userUpdated != null)
+            var updatedUser = UpdateUser(curentUser);
+            if (updatedUser.Item1 != null && updatedUser.Item2 != null)
             {
-                result.Data = userUpdated;
+                result.Data = updatedUser.Item2;
                 result.FlowControl = FlowOptions.Success;
+                result.Message = UserResource.Updated;
+                return result;
             }
+            if (updatedUser.Item1 == null || updatedUser.Item2 == null)
+            {
+                result.Data = curentUser;
+                result.FlowControl = FlowOptions.Failed;
+                result.Message = result.GetMessages(" - ");
+            }                 
             return result;
+
+            (UserModel, UserModel) UpdateUser(UserModel user)
+            {
+                UserModel authUser = new UserModel();
+                UserModel localUser = new UserModel();
+                try
+                {
+                    authUser = AuthProvider.UpdateUserAuth(user);
+                    localUser = UserRepository.UpdateUser(user);
+                    return (authUser, localUser);
+                }
+                catch (Exception ex)
+                {
+                    result.AddMessageToList(ex?.InnerException?.Message ?? ex.Message);
+                    return (authUser.Uid != null ? authUser : null, localUser.Uid != null ? localUser : null);
+                }
+            }
         }
 
         public Result DeleteUser(string userId)

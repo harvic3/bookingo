@@ -156,6 +156,9 @@
   <data name="UidRequired" xml:space="preserve">
     <value>The user must have a Uid</value>
   </data>
+  <data name="Updated" xml:space="preserve">
+    <value>User updated</value>
+  </data>
   <data name="UpdateError" xml:space="preserve">
     <value>Error when updating</value>
   </data>

@@ -27,34 +27,13 @@ namespace BookingoApi.Data.DBContext
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Booking> Bookings { get; set; }
         public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Guest> Guests { get; set; }
         public virtual DbSet<Hotel> Hotels { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Guest> Guests { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
-        public virtual DbSet<Booking> Bookings { get; set; }
-    
-        public virtual ObjectResult<GetFreeHotels_Result> GetFreeHotels(Nullable<short> guest, Nullable<int> idCity, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
-        {
-            var guestParameter = guest.HasValue ?
-                new ObjectParameter("guest", guest) :
-                new ObjectParameter("guest", typeof(short));
-    
-            var idCityParameter = idCity.HasValue ?
-                new ObjectParameter("idCity", idCity) :
-                new ObjectParameter("idCity", typeof(int));
-    
-            var startDateParameter = startDate.HasValue ?
-                new ObjectParameter("startDate", startDate) :
-                new ObjectParameter("startDate", typeof(System.DateTime));
-    
-            var endDateParameter = endDate.HasValue ?
-                new ObjectParameter("endDate", endDate) :
-                new ObjectParameter("endDate", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetFreeHotels_Result>("GetFreeHotels", guestParameter, idCityParameter, startDateParameter, endDateParameter);
-        }
+        public virtual DbSet<User> Users { get; set; }
     
         public virtual ObjectResult<GetFreeHotelRooms_Result> GetFreeHotelRooms(Nullable<short> guest, Nullable<long> idHotel, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
         {
@@ -75,6 +54,27 @@ namespace BookingoApi.Data.DBContext
                 new ObjectParameter("endDate", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetFreeHotelRooms_Result>("GetFreeHotelRooms", guestParameter, idHotelParameter, startDateParameter, endDateParameter);
+        }
+    
+        public virtual ObjectResult<GetFreeHotels_Result> GetFreeHotels(Nullable<short> guest, Nullable<int> idCity, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate)
+        {
+            var guestParameter = guest.HasValue ?
+                new ObjectParameter("guest", guest) :
+                new ObjectParameter("guest", typeof(short));
+    
+            var idCityParameter = idCity.HasValue ?
+                new ObjectParameter("idCity", idCity) :
+                new ObjectParameter("idCity", typeof(int));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetFreeHotels_Result>("GetFreeHotels", guestParameter, idCityParameter, startDateParameter, endDateParameter);
         }
     }
 }

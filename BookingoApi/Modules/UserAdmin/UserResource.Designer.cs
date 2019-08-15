@@ -178,6 +178,15 @@ namespace BookingoApi.Modules.UserAdmin {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a User updated.
+        /// </summary>
+        internal static string Updated {
+            get {
+                return ResourceManager.GetString("Updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Error when updating.
         /// </summary>
         internal static string UpdateError {

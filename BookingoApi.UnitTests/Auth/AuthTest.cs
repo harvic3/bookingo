@@ -20,6 +20,7 @@ namespace BookingoApi.UnitTests.Auth
     {
         private MoqMockingKernel _mockingKernel;
         private Mock<IAuth> _authRepoMock;
+        private Mock<IUserAdmin> _userAdminRepoMock;
 
         private AuthContract _authContract;
 
@@ -28,31 +29,48 @@ namespace BookingoApi.UnitTests.Auth
         {
             _mockingKernel = new MoqMockingKernel();
             ModuleManager.Kernel = _mockingKernel;
+
             _authRepoMock = new Mock<IAuth>();
+            ModuleManager.Kernel.Bind<IAuth>().ToMethod(x => _authRepoMock.Object);
+
+            _userAdminRepoMock = new Mock<IUserAdmin>();
+            ModuleManager.Kernel.Bind<IUserAdmin>().ToMethod(x => _userAdminRepoMock.Object);
 
             _authContract = new AuthContract();
         }
 
         [Test]
-        public void UpdateAuthUserInfo()
+        public void RenewCustomToken()
         {
             // Arrange
             UserModel user = new UserModel
             {
+                Uid = "my-user-uid",
                 DisplayName = "Juan Perez",
                 Email = "44c9adf57dd44e21887f-c970fbfa584e",
                 Disabled = true,
                 EmailVerified = false,
                 PhoneNumber = "+573005609090",
-                PhotoUrl = null
+                PhotoUrl = null,
+                RoleId = 1,
+                Role = new RoleModel
+                {
+                    Name = "Machine",
+                    Id = 1,
+                }
             };
-            _authRepoMock.Setup(x => x.UpdateUserAuth(user)).Returns(user);
+            string token = "my-new-token";
+            Dictionary<string, object> clains = new Dictionary<string, object>();
+            clains.Add("role", user.Role.Name);
+            clains.Add("roleId", user.RoleId);
+            _userAdminRepoMock.Setup(x => x.GetUserByUid(user.Uid)).Returns(user);
+            _authRepoMock.Setup(x => x.RenewCustomAuthToken(user.Uid, clains)).Returns(token);
 
             // Action
-            Result result = _authContract.UpdateAuthUserInfo(user);
+            string newToken = _authContract.RenewAuthToken(user.Uid);
 
             // Assert
-            Assert.IsTrue(result.FlowControl == FlowOptions.Success);
+            Assert.AreSame(newToken, token);
         }
     }
 }

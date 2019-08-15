@@ -246,6 +246,7 @@ namespace BookingoApi.Modules.BookingClient
             }
             else
             {
+                result.FlowControl = FlowOptions.Nothing;
                 result.Message = BookingResource.NoBookingsFound;
             }
             return result;

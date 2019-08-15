@@ -19,7 +19,7 @@ namespace BookingoApi.Data.DBContext
         public short Code { get; set; }
         public short Guests { get; set; }
         public decimal Price { get; set; }
-        public int Tax { get; set; }
+        public short Tax { get; set; }
         public string Description { get; set; }
         public bool Enabled { get; set; }
         public bool Deleted { get; set; }
