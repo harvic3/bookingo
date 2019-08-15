@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2accf0a4af47418888e3b20a9a9c2052" Name="Diagram1">
+        <EntityTypeShape EntityType="BookingoModel.City" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="BookingoModel.Hotel" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="BookingoModel.Role" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="BookingoModel.User" Width="1.5" PointX="0.75" PointY="6.875" />
+        <AssociationConnector Association="BookingoModel.FK_Hotels_Cities" />
+        <AssociationConnector Association="BookingoModel.FK_Users_Roles" />
+        <EntityTypeShape EntityType="BookingoModel.Guest" Width="1.5" PointX="9.625" PointY="3.75" />
+        <EntityTypeShape EntityType="BookingoModel.Room" Width="1.5" PointX="5.25" PointY="3.75" />
+        <AssociationConnector Association="BookingoModel.FK_Rooms_Hotels" />
+        <EntityTypeShape EntityType="BookingoModel.Booking" Width="1.5" PointX="7.5" PointY="3.75" />
+        <AssociationConnector Association="BookingoModel.FK_Bookings_Hotels" />
+        <AssociationConnector Association="BookingoModel.FK_Bookings_Rooms" />
+        <AssociationConnector Association="BookingoModel.FK_Guests_Bookings" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
