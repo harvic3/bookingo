@@ -19,6 +19,7 @@ namespace BookingoApi.Modules.AppSettings
             context.Request.Properties.TryGetValue("ModuleAction", out moduleAction);
             object userUid = new object();
             context.Request.Properties.TryGetValue("AuthorizedRequestId", out userUid);
+            // TODO: Save the log
 
             string errorMsg = context.Exception.Message;
 

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingoApi", "BookingoApi\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingoApi.UnitTests", "BookingoApi.UnitTests\BookingoApi.UnitTests.csproj", "{F387BD55-FB08-4E93-A67F-3EA52396537E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireBaseAuth", "..\WebApiBase\FireBaseOauth\FireBaseAuth.csproj", "{EB2CE571-AEAE-4A77-A226-EDCDDA1B2842}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FireBaseAuth", "..\WebApiBase\FireBaseAuth\FireBaseAuth.csproj", "{EB2CE571-AEAE-4A77-A226-EDCDDA1B2842}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

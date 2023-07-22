@@ -1,4 +1,5 @@
 ﻿using BookingoApi.Modules.AppSettings;
+using BookingoApi.Modules.Auth;
 using BookingoApi.Modules.BookingAdmin;
 using BoxAgileDev;
 using System;

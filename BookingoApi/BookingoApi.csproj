@@ -142,7 +142,9 @@
       <LastGenOutput>BookingoDbModel.cs</LastGenOutput>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
@@ -204,7 +206,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Modules\AppSettings\AppSettings.cs" />
-    <Compile Include="Modules\AppSettings\ErrorHandler.cs" />
+    <Compile Include="Modules\AppSettings\HandleError.cs" />
     <Compile Include="Modules\AppSettings\ModuleManager.cs" />
     <Compile Include="Modules\Auth\AuthContract.cs" />
     <Compile Include="Modules\Auth\AuthRequestFilter.cs" />
@@ -274,12 +276,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WebApiBase\FireBaseOauth\FireBaseAuth.csproj">
-      <Project>{eb2ce571-aeae-4a77-a226-edcdda1b2842}</Project>
-      <Name>FireBaseAuth</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Modules\BookingAdmin\BookingAdminResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>BookingAdminResource.Designer.cs</LastGenOutput>
@@ -301,7 +297,12 @@
       <LastGenOutput>UserResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\WebApiBase\FireBaseAuth\FireBaseAuth.csproj">
+      <Project>{EB2CE571-AEAE-4A77-A226-EDCDDA1B2842}</Project>
+      <Name>FireBaseAuth</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

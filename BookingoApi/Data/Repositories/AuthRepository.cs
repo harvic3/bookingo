@@ -1,8 +1,7 @@
 ﻿using BoxAgileDev;
 using FirebaseAdmin.Auth;
-using FireBaseAdmin.OAuth;
+using FireBaseAuth.Modules;
 using Ninject.Modules;
-using System.Threading.Tasks;
 using BookingoApi.Modules.AppSettings;
 using BookingoApi.Modules.Auth;
 using BookingoApi.Modules.UserAdmin;

@@ -86,7 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\AuthTest.cs" />
-    <Compile Include="Auth\UserTestcs.cs" />
+    <Compile Include="Auth\UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
